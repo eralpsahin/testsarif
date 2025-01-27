@@ -1,0 +1,75 @@
+{
+    "$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/errata01/os/schemas/sarif-schema-2.1.0.json",
+    "version": "2.1.0",
+    "runs": [
+      {
+        "tool": {
+          "driver": {
+            "name": "cfn-guard",
+            "semanticVersion": "3.1.1",
+            "fullName": "cfn-guard 3.1.1",
+            "organization": "Amazon Web Services",
+            "downloadUri": "https://github.com/aws-cloudformation/cloudformation-guard",
+            "informationUri": "https://github.com/aws-cloudformation/cloudformation-guard",
+            "shortDescription": {
+              "text": "AWS CloudFormation Guard is an open-source general-purpose policy-as-code evaluation tool. It provides developers with a simple-to-use, yet powerful and expressive domain-specific language (DSL) to define policies and enables developers to validate JSON- or YAML- formatted structured data with those policies."
+            }
+          }
+        },
+        "artifacts": [
+          {
+            "location": {
+              "uri": "src/templates/failing.json"
+            }
+          },
+          {
+            "location": {
+              "uri": "src/templates/failing2.json"
+            }
+          }
+        ],
+        "results": [
+          {
+            "ruleId": "EXAMPLE_CHECK",
+            "level": "error",
+            "message": {
+              "text": "Check was not compliant as property value [Path=/bigger[L:1,C:12] Value=2] not greater than equal value [Path=/smaller[L:2,C:13] Value=3]. "
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "src/templates/failing.json"
+                  },
+                  "region": {
+                    "startLine": 2,
+                    "startColumn": 13
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "ruleId": "EXAMPLE_CHECK",
+            "level": "error",
+            "message": {
+              "text": "Check was not compliant as property value [Path=/bigger[L:1,C:12] Value=1] not greater than equal value [Path=/smaller[L:2,C:13] Value=3]. "
+            },
+            "locations": [
+              {
+                "physicalLocation": {
+                  "artifactLocation": {
+                    "uri": "src/templates/failing2.json"
+                  },
+                  "region": {
+                    "startLine": 2,
+                    "startColumn": 13
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
